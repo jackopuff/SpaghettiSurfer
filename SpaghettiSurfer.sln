@@ -1,7 +1,7 @@
 
 Microsoft Visual Studio Solution File, Format Version 12.00
 # Visual Studio 2012
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "SpaghettiSurfer", "SpaghettiSurfer\SpaghettiSurfer.csproj", "{D3A3C27F-FDF2-4963-90B5-AA67BD1E2220}"
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "SpaghettiSurfer", "SpaghettiSurfer\SpaghettiSurfer.csproj", "{86A0AEF2-9D35-49DA-B5FC-F85624AE0D2D}"
 EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
@@ -9,9 +9,9 @@ Global
 		Release|x86 = Release|x86
 	EndGlobalSection
 	GlobalSection(ProjectConfigurationPlatforms) = postSolution
-		{D3A3C27F-FDF2-4963-90B5-AA67BD1E2220}.Debug|x86.ActiveCfg = Debug|x86
-		{D3A3C27F-FDF2-4963-90B5-AA67BD1E2220}.Debug|x86.Build.0 = Debug|x86
-		{D3A3C27F-FDF2-4963-90B5-AA67BD1E2220}.Release|x86.ActiveCfg = Release|x86
-		{D3A3C27F-FDF2-4963-90B5-AA67BD1E2220}.Release|x86.Build.0 = Release|x86
+		{86A0AEF2-9D35-49DA-B5FC-F85624AE0D2D}.Debug|x86.ActiveCfg = Debug|x86
+		{86A0AEF2-9D35-49DA-B5FC-F85624AE0D2D}.Debug|x86.Build.0 = Debug|x86
+		{86A0AEF2-9D35-49DA-B5FC-F85624AE0D2D}.Release|x86.ActiveCfg = Release|x86
+		{86A0AEF2-9D35-49DA-B5FC-F85624AE0D2D}.Release|x86.Build.0 = Release|x86
 	EndGlobalSection
 EndGlobal

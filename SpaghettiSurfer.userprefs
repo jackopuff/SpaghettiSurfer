@@ -1,7 +1,8 @@
-﻿<Properties StartupConfiguration="{D3A3C27F-FDF2-4963-90B5-AA67BD1E2220}|Default">
-  <MonoDevelop.Ide.Workbench ActiveDocument="SpaghettiSurfer/Game1.cs">
+﻿<Properties StartupConfiguration="{86A0AEF2-9D35-49DA-B5FC-F85624AE0D2D}|Default">
+  <MonoDevelop.Ide.Workbench ActiveDocument="SpaghettiSurfer/Controller/SpaghettiSurfer.cs">
     <Files>
-      <File FileName="SpaghettiSurfer/Game1.cs" Line="1" Column="1" />
+      <File FileName="SpaghettiSurfer/Controller/Program.cs" Line="14" Column="37" />
+      <File FileName="SpaghettiSurfer/Controller/SpaghettiSurfer.cs" Line="73" Column="46" />
     </Files>
   </MonoDevelop.Ide.Workbench>
   <MonoDevelop.Ide.Workspace ActiveConfiguration="Debug|x86" />
