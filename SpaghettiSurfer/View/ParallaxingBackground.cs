@@ -3,7 +3,7 @@ using System;
 using Microsoft.Xna.Framework;
 using Microsoft.Xna.Framework.Content;
 using Microsoft.Xna.Framework.Graphics;
-namespace SpaghettiSurfer
+namespace SpaghettiSurfer.View
 {
 	public class ParallaxingBackground
 	{
@@ -19,7 +19,7 @@ namespace SpaghettiSurfer
 		public void Initialize(ContentManager content, String texturePath, int screenWidth, int speed)
 		{
 			// Load the background texture we will be using
-			texture = content.Load<Texture2D>(texturePath);
+			texture = content.Load<Texture2D>("Texture/player");
 
 			// Set the speed of the background
 			this.speed = speed;

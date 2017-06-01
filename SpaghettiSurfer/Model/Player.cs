@@ -6,12 +6,13 @@ namespace SpaghettiSurfer.Model
 {
 	public class Player
 	{
+
 		// Animation representing the player
-		private Animation playerAnimation;
-		public Animation PlayerAnimation
+		private Texture2D playerTexture;
+		public Texture2D PlayerTexture
 		{
-			get { return playerAnimation; }
-			set { playerAnimation = value; }
+			get { return playerTexture; }
+			set { playerTexture = value; }
 		}
 
 		// Position of the Player relative to the upper left side of the screen
@@ -37,40 +38,38 @@ namespace SpaghettiSurfer.Model
 		// Get the width of the player ship
 		public int Width
 		{
-			get { return playerAnimation.FrameWidth; }
+			get { return PlayerTexture.Width; }
 		}
 
 		// Get the height of the player ship
 		public int Height
 		{
-			get { return playerAnimation.FrameHeight; }
+			get { return PlayerTexture.Height; }
 		}
-		// Initialize the player
-		public void Initialize(Animation animation, Vector2 position)
-		{
-			playerAnimation = animation;
 
-			// Set the starting position of the player around the middle of the screen and to the back
+
+		public void Initialize(Texture2D texture, Vector2 position)
+		{
+			PlayerTexture = texture;
+
+			// Set the starting position of the player around the middle of the screen and to the back 
 			Position = position;
 
-			// Set the player to be active
+			// Set the player to be active 
 			Active = true;
 
 			// Set the player health
 			Health = 100;
 		}
 
-		// Update the player animation
-		public void Update(GameTime gameTime)
+		public void Update()
 		{
-			playerAnimation.Position = Position;
-			playerAnimation.Update(gameTime);
 		}
 
-		// Draw the player
 		public void Draw(SpriteBatch spriteBatch)
 		{
-			playerAnimation.Draw(spriteBatch);
+			spriteBatch.Draw(PlayerTexture, Position, null, Color.White, 0f, Vector2.Zero, 1f, SpriteEffects.None, 0f);
 		}
+
 	}
 }
