@@ -36,14 +36,16 @@ namespace SpaghettiSurfer.Controller
 		// Enemies
 		private Texture2D enemyTexture;
 		private List<Enemy> enemies;
-
+		private Texture2D projectileTexture;
+		private List<Projectile> projectiles;
 		// The rate at which the enemies appear
 		private TimeSpan enemySpawnTime;
 		private TimeSpan previousSpawnTime;
 
 		// A random number generator
 		private Random random;
-
+		private Texture2D explosionTexture;
+		private List<Animation> explosions;
 		public Game1()
 		{
 			graphics = new GraphicsDeviceManager(this);
@@ -68,7 +70,7 @@ namespace SpaghettiSurfer.Controller
 
 			// Set the time keepers to zero
 			previousSpawnTime = TimeSpan.Zero;
-
+			explosions = new List<Animation>();
 			// Used to determine how fast enemy respawns
 			enemySpawnTime = TimeSpan.FromSeconds(1.0f);
 
@@ -90,7 +92,7 @@ namespace SpaghettiSurfer.Controller
 			// Load the player resources 
 			Vector2 playerPosition = new Vector2(GraphicsDevice.Viewport.TitleSafeArea.X, GraphicsDevice.Viewport.TitleSafeArea.Y + GraphicsDevice.Viewport.TitleSafeArea.Height / 2);
 			// Load the parallaxing background
-
+			explosionTexture = Content.Load<Texture2D>("Animation/explosion");
 			bgLayer1.Initialize(Content, "Texture/bgLayer1", GraphicsDevice.Viewport.Width, -1);
 			bgLayer2.Initialize(Content, "Texture/bgLayer2", GraphicsDevice.Viewport.Width, -2);
 
@@ -116,8 +118,20 @@ namespace SpaghettiSurfer.Controller
 			// Add the enemy to the active enemies list
 			enemies.Add(enemy);
 		}
+		private void UpdateExplosions(GameTime gameTime)
+		{
+			for (int i = explosions.Count - 1; i >= 0; i--)
+			{
+				explosions[i].Update(gameTime);
+				if (explosions[i].Active == false)
+				{
+					explosions.RemoveAt(i);
+				}
+			}
+		}
 		private void UpdateEnemies(GameTime gameTime)
 		{
+
 			// Spawn a new enemy enemy every 1.5 seconds
 			if (gameTime.TotalGameTime - previousSpawnTime > enemySpawnTime)
 			{
@@ -130,6 +144,12 @@ namespace SpaghettiSurfer.Controller
 			// Update the Enemies
 			for (int i = enemies.Count - 1; i >= 0; i--)
 			{
+				// If not active and health <= 0
+				if (enemies[i].Health <= 0)
+				{
+					// Add an explosion
+					AddExplosion(enemies[i].Position);
+				}
 				enemies[i].Update(gameTime);
 
 				if (enemies[i].Active == false)
@@ -164,6 +184,11 @@ namespace SpaghettiSurfer.Controller
 			currentGamePadState = GamePad.GetState(PlayerIndex.One);
 			// Update the enemies
 			UpdateEnemies(gameTime);
+			// Update the projectiles
+			UpdateProjectiles();
+
+			// Update the explosions
+			UpdateExplosions(gameTime);
 			// Update the collision
 			UpdateCollision();
 			//Update the player
@@ -193,11 +218,22 @@ namespace SpaghettiSurfer.Controller
 			{
 				enemies[i].Draw(spriteBatch);
 			}
+			// Draw the explosions
+			for (int i = 0; i < explosions.Count; i++)
+			{
+				explosions[i].Draw(spriteBatch);
+			}
 			// Stop drawing 
 			spriteBatch.End();
 			//TODO: Add your drawing code here
 
 			base.Draw(gameTime);
+		}
+		private void AddExplosion(Vector2 position)
+		{
+			Animation explosion = new Animation();
+			explosion.Initialize(explosionTexture, position, 134, 134, 12, 45, Color.White, 1f, false);
+			explosions.Add(explosion);
 		}
 		private void UpdatePlayer(GameTime gameTime)
 		{
@@ -231,6 +267,19 @@ namespace SpaghettiSurfer.Controller
 			player.Position.X = MathHelper.Clamp(player.Position.X, 0, GraphicsDevice.Viewport.Width - player.Width);
 			player.Position.Y = MathHelper.Clamp(player.Position.Y, 0, GraphicsDevice.Viewport.Height - player.Height);
 		}
+		private void UpdateProjectiles()
+		{
+			// Update the Projectiles
+			for (int i = projectiles.Count - 1; i >= 0; i--)
+			{
+				projectiles[i].Update();
+
+				if (projectiles[i].Active == false)
+				{
+					projectiles.RemoveAt(i);
+				}
+			}
+		}
 		private void UpdateCollision()
 		{
 			// Use the Rectangle's built-in intersect function to 
@@ -258,7 +307,7 @@ namespace SpaghettiSurfer.Controller
 					enemies[i].Health = 0;
 
 					// If the player health is less than zero we died
-					if (player.Health < = 0)
+					if (player.Health <= 0)
 					{
 						player.Active = false;
 					}
