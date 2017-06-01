@@ -1,10 +1,10 @@
 ﻿using System;
-
+using SpaghettiSurfer.Model;
 using Microsoft.Xna.Framework;
 using Microsoft.Xna.Framework.Graphics;
 using Microsoft.Xna.Framework.Input;
 
-namespace SpaghettiSurfer
+namespace SpaghettiSurfer.Controller
 {
 	/// <summary>
 	/// This is the main type for your game.
@@ -13,11 +13,13 @@ namespace SpaghettiSurfer
 	{
 		GraphicsDeviceManager graphics;
 		SpriteBatch spriteBatch;
-
+		private Player player;
 		public Game1()
 		{
 			graphics = new GraphicsDeviceManager(this);
 			Content.RootDirectory = "Content";
+			// Initialize the player class
+			player = new Player();
 		}
 
 		/// <summary>
@@ -41,7 +43,10 @@ namespace SpaghettiSurfer
 		{
 			// Create a new SpriteBatch, which can be used to draw textures.
 			spriteBatch = new SpriteBatch(GraphicsDevice);
+			// Load the player resources 
+			Vector2 playerPosition = new Vector2(GraphicsDevice.Viewport.TitleSafeArea.X, GraphicsDevice.Viewport.TitleSafeArea.Y + GraphicsDevice.Viewport.TitleSafeArea.Height / 2);
 
+			player.Initialize(Content.Load<Texture2D>("Texture/player"), playerPosition);
 			//TODO: use this.Content to load your game content here 
 		}
 
@@ -71,7 +76,12 @@ namespace SpaghettiSurfer
 		protected override void Draw(GameTime gameTime)
 		{
 			graphics.GraphicsDevice.Clear(Color.Purple);
-
+			// Start drawing 
+			spriteBatch.Begin();
+			// Draw the Player 
+			player.Draw(spriteBatch);
+			// Stop drawing 
+			spriteBatch.End();
 			//TODO: Add your drawing code here
 
 			base.Draw(gameTime);
