@@ -1,11 +1,12 @@
 ﻿<Properties StartupConfiguration="{86A0AEF2-9D35-49DA-B5FC-F85624AE0D2D}|Default">
-  <MonoDevelop.Ide.Workbench ActiveDocument="SpaghettiSurfer/Model/Enemy.cs">
+  <MonoDevelop.Ide.Workbench ActiveDocument="SpaghettiSurfer/Model/Projectile.cs">
     <Files>
-      <File FileName="SpaghettiSurfer/Controller/SpaghettiSurfer.cs" Line="60" Column="72" />
+      <File FileName="SpaghettiSurfer/Controller/SpaghettiSurfer.cs" Line="165" Column="25" />
       <File FileName="SpaghettiSurfer/Model/Player.cs" Line="41" Column="1" />
       <File FileName="SpaghettiSurfer/View/Animation.cs" Line="74" Column="94" />
       <File FileName="SpaghettiSurfer/View/ParallaxingBackground.cs" Line="11" Column="9" />
-      <File FileName="SpaghettiSurfer/Model/Enemy.cs" Line="2" Column="32" />
+      <File FileName="SpaghettiSurfer/Model/Enemy.cs" Line="7" Column="32" />
+      <File FileName="SpaghettiSurfer/Model/Projectile.cs" Line="87" Column="2" />
     </Files>
   </MonoDevelop.Ide.Workbench>
   <MonoDevelop.Ide.Workspace ActiveConfiguration="Debug|x86" />
