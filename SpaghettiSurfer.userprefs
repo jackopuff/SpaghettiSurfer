@@ -1,9 +1,11 @@
 ﻿<Properties StartupConfiguration="{86A0AEF2-9D35-49DA-B5FC-F85624AE0D2D}|Default">
-  <MonoDevelop.Ide.Workbench ActiveDocument="SpaghettiSurfer/Model/Player.cs">
+  <MonoDevelop.Ide.Workbench ActiveDocument="SpaghettiSurfer/View/ParallaxingBackground.cs">
     <Files>
       <File FileName="SpaghettiSurfer/Controller/Program.cs" Line="14" Column="37" />
-      <File FileName="SpaghettiSurfer/Controller/SpaghettiSurfer.cs" Line="73" Column="46" />
-      <File FileName="SpaghettiSurfer/Model/Player.cs" Line="2" Column="32" />
+      <File FileName="SpaghettiSurfer/Controller/SpaghettiSurfer.cs" Line="103" Column="1" />
+      <File FileName="SpaghettiSurfer/Model/Player.cs" Line="68" Column="4" />
+      <File FileName="SpaghettiSurfer/View/Animation.cs" Line="51" Column="1" />
+      <File FileName="SpaghettiSurfer/View/ParallaxingBackground.cs" Line="1" Column="1" />
     </Files>
   </MonoDevelop.Ide.Workbench>
   <MonoDevelop.Ide.Workspace ActiveConfiguration="Debug|x86" />
