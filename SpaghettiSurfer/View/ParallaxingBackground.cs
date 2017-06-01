@@ -7,9 +7,8 @@ namespace SpaghettiSurfer
 {
 	public class ParallaxingBackground
 	{
-		public ParallaxingBackground()
-		{
-// The image representing the parallaxing background
+
+		// The image representing the parallaxing background
 		private Texture2D texture;
 
 		// An array of positions of the parallaxing background
@@ -20,7 +19,7 @@ namespace SpaghettiSurfer
 		public void Initialize(ContentManager content, String texturePath, int screenWidth, int speed)
 		{
 			// Load the background texture we will be using
-			texture = content.Load(texturePath);
+			texture = content.Load<Texture2D>(texturePath);
 
 			// Set the speed of the background
 			this.speed = speed;
@@ -67,11 +66,12 @@ namespace SpaghettiSurfer
 		}
 		public void Draw(SpriteBatch spriteBatch)
 		{
-			for (int i = 0; i i < positions.Length; i++)
-      {
+			for (int i = 0; i < positions.Length; i++)
+			{
 				spriteBatch.Draw(texture, positions[i], Color.White);
 			}
 		}
+
 	}
 }
-}
+
