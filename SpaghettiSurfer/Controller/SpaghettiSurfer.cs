@@ -6,6 +6,7 @@ using Microsoft.Xna.Framework.Input;
 using System.Collections.Generic;
 using SpaghettiSurfer.View;
 
+
 namespace SpaghettiSurfer.Controller
 {
 	/// <summary>
@@ -34,7 +35,7 @@ namespace SpaghettiSurfer.Controller
 		private float playerMoveSpeed;
 		// Enemies
 		private Texture2D enemyTexture;
-		private List enemies;
+		private List<Enemy> enemies;
 
 		// The rate at which the enemies appear
 		private TimeSpan enemySpawnTime;
@@ -63,7 +64,7 @@ namespace SpaghettiSurfer.Controller
 			bgLayer1 = new ParallaxingBackground();
 			bgLayer2 = new ParallaxingBackground();
 			// Initialize the enemies list
-			enemies = new List();
+			enemies = new List<Enemy>();
 
 			// Set the time keepers to zero
 			previousSpawnTime = TimeSpan.Zero;
@@ -85,7 +86,7 @@ namespace SpaghettiSurfer.Controller
 		protected override void LoadContent()
 		{
 			spriteBatch = new SpriteBatch(GraphicsDevice);
-			enemyTexture = Content.Load("Animation/mineAnimation");
+			enemyTexture = Content.Load<Texture2D>("Animation/mineAnimation");
 			// Load the player resources 
 			Vector2 playerPosition = new Vector2(GraphicsDevice.Viewport.TitleSafeArea.X, GraphicsDevice.Viewport.TitleSafeArea.Y + GraphicsDevice.Viewport.TitleSafeArea.Height / 2);
 			// Load the parallaxing background
@@ -138,6 +139,7 @@ namespace SpaghettiSurfer.Controller
 			}
 		}
 
+
 		/// <summary>
 		/// Allows the game to run logic such as updating the world,
 		/// checking for collisions, gathering input, and playing audio.
@@ -162,7 +164,8 @@ namespace SpaghettiSurfer.Controller
 			currentGamePadState = GamePad.GetState(PlayerIndex.One);
 			// Update the enemies
 			UpdateEnemies(gameTime);
-
+			// Update the collision
+			UpdateCollision();
 			//Update the player
 			UpdatePlayer(gameTime);
 			base.Update(gameTime);
@@ -227,6 +230,40 @@ namespace SpaghettiSurfer.Controller
 			// Make sure that the player does not go out of bounds
 			player.Position.X = MathHelper.Clamp(player.Position.X, 0, GraphicsDevice.Viewport.Width - player.Width);
 			player.Position.Y = MathHelper.Clamp(player.Position.Y, 0, GraphicsDevice.Viewport.Height - player.Height);
+		}
+		private void UpdateCollision()
+		{
+			// Use the Rectangle's built-in intersect function to 
+			// determine if two objects are overlapping
+			Rectangle rectangle1;
+			Rectangle rectangle2;
+
+			// Only create the rectangle once for the player
+			rectangle1 = new Rectangle((int)player.Position.X, (int)player.Position.Y, player.Width, player.Height);
+
+			// Do the collision between the player and the enemies
+			for (int i = 0; i < enemies.Count; i++)
+			{
+				rectangle2 = new Rectangle((int)enemies[i].Position.X, (int)enemies[i].Position.Y, enemies[i].Width, enemies[i].Height);
+
+				// Determine if the two objects collided with each other
+				if (rectangle1.Intersects(rectangle2))
+				{
+					// Subtract the health from the player based on
+					// the enemy damage
+					player.Health -= enemies[i].Damage;
+
+					// Since the enemy collided with the player
+					// destroy it
+					enemies[i].Health = 0;
+
+					// If the player health is less than zero we died
+					if (player.Health < = 0)
+					{
+						player.Active = false;
+					}
+				}
+			}
 		}
 	}
 }

@@ -4,7 +4,7 @@ using Microsoft.Xna.Framework.Graphics;
 using SpaghettiSurfer.View;
 
 
-namespace DankGame
+namespace SpaghettiSurfer.Model
 {
 	public class Enemy
 	{
